@@ -62,11 +62,30 @@ fxn:raycast runs the command forward at given intervals with a maximum iteration
 fxn:list runs the provided list of commands in order
 
 tl;dr use fxn:schedule to schedule commands in the future
+	use fxn:list to run a list of commands
 ------
 
 Tool:
 Select:
 	select a region of blocks and another equivalent region for various clone commands
-tool:
+tool:select runs tool:select/extend at the current position
+tool:move runs tool:select/move at the current position
+tool:select/extend extends the player's block region to include the provided block
+tool:select/move moves the player's equivalent region to include the provided block
+tool:select/strict_move moves the player's equivalent region by the provided offset x, y, z
+tool:select/particle shows the player box particles for both regions
+tool:select/deselect removes the player's region selections
 
 Op(eration):
+	operates on a region of blocks and another equivalent region with various clone commands
+	note these functions can use the player's regions, or explicity provided x, y, z, dx, dy, dz, qx, qy, qz (and other macros)
+tool:op/clone clones the block region to the equivalent region
+tool:op/move clone replace moves the block region to the equivalent region
+tool:op/undo/move clone replace moves the equivalent region to the block region
+tool:op/interpolate moves the block region to the equivalent region with a series of delayed clones up to the provided timedelta
+
+tool:particle/box shows particles for the edges of a box region
+tool:kit gives command blocks that run tool:select and tool:move at the placed block
+
+tl;dr use the blue block to extend a region, the pink block to move its copy, and tool:op/move (or clone, or other) to operate on the 2 regions
+------
