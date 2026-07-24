@@ -2,7 +2,7 @@
 #with {dist FLOAT, max COMMAND, command}
 
 #>command must pass parsing to run (write it correctly)
-#>command should have a conditional ex: 'if block' or 'if entity'
+#>command should have a conditional execute: 'if block' or 'if entity' or ...
 
 #>please reset failsafe ftemp before calling this function!
 

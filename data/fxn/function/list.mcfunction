@@ -1,12 +1,11 @@
 #appends and runs a list of functions with the current context
 #with {list:['command', 'command',...]}
 
+#>example:
+#>function fxn:list {list: ['say 1', 'say 2', 'function fxn:list {list: ["say 3", "say 4"]}']}
 
 #
 #if list is created from inside a list, preserve context at the current point
-#check if list is from another list
-
-
 #preserve the current context
 execute if score in_list ftemp matches 1.. run data modify storage fxn:list context.command set value "function fxn:list/loop"
 execute if score in_list ftemp matches 1.. run function fxn:context/pos {namespace:"storage fxn:list context", include:[all]}

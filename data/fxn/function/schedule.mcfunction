@@ -2,7 +2,7 @@
 #with {merge: {timedelta, command, loops, uuid, pos{}, x, y, z, r0, r1, dim, storage{},tags[]}}
 
 #>example:
-#>function schedule:schedule/create {merge: {command:"say hi",timedelta:20,uuid:"Jeb",x:22,r0:180,pos:[dim],tags:["message"]}}
+#>function fxn:schedule {merge: {command:"say hi", timedelta:20, loops:2, uuid:context, pos:[all, !dim], dim:"minecraft:the_end", tags:["my_message"]}}
 
 
 #
