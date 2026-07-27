@@ -11,7 +11,7 @@ execute if score decrement ftemp matches ..-1 run return fail
 #else
 
 #
-particle dust{color:[1,0.6,0.9],scale:1.5} ~ ~ ~ 0 0 0 0 0 force @s
+particle dust{color:[1,0.6,0.9],scale:1.5} ~ ~ ~ 0 0 0 0 0 force @a
 particle dust{color:[1,0.6,0.9],scale:1.5} ^ ^ ^0.5 0 0 0 0 0 force @s
 
 

@@ -6,6 +6,7 @@
 
 #>uuid match
 #run for each entry in list, find entry with uuid match -> return 0 or 1.., -> save entry's index to -> 'storage tool:select entry.index'
+data remove storage tool:select entry.index
 execute store result score result ftemp run function fxn:array/cmd {namespace:"storage tool:select list", command:'function tool:entry/index with storage fxn:array cmd'}
 #result ftemp = 0 for no match, = 1 for 1 match, = 2.. for multiple entries
 
