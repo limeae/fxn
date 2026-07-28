@@ -17,6 +17,7 @@ $data modify storage fxn:matches value set from $(namespace)[$(decrement)]
 #add more here
 
 #>run command | NOTE: use 'function draft:draft with storage fxn:array cmd' {namespace, decrement} to get array entries
+scoreboard players set add ftemp 0
 $execute store result score add ftemp run $(command)
 scoreboard players operation cmdsuccess ftemp += add ftemp
 #and add to success ^^^
