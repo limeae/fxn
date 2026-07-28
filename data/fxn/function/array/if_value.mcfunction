@@ -8,4 +8,4 @@
 #>return 1 returns if the value was found
 
 #its just a wrapper for array/cmd
-$function fxn:array/cmd {namespace:"$(namespace)", command:'execute if data storage fxn:matches {value:$(value)} run $(return)'}
+$return run function fxn:array/cmd {namespace:"$(namespace)", command:'execute if data storage fxn:matches {value:$(value)} run $(return)'}

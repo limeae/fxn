@@ -15,5 +15,5 @@ execute if score matches ftemp <= max ftemp run return 1
 #else delete rand and loop
 $function fxn:array/delete/rand {namespace:"$(namespace)"}
 #>loop
-$function fxn:array/delete/clamp {namespace:"$(namespace)",max:$(max)}
+$return run function fxn:array/delete/clamp {namespace:"$(namespace)",max:$(max)}
 #loops

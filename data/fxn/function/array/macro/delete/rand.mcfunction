@@ -5,4 +5,4 @@
 
 
 #i wish this wasn't its own function
-$data remove $(namespace)[$(rand)]
+$return run data remove $(namespace)[$(rand)]

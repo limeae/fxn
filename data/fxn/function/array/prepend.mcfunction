@@ -16,5 +16,5 @@ store result storage fxn:array prepend.decrement int 1 \
 
 
 #prepend from[0, 1, 2,...] {from NAMESPACE, to NAMESPACE, decrement}
-function fxn:array/macro/prepend with storage fxn:array prepend
+return run function fxn:array/macro/prepend with storage fxn:array prepend
 

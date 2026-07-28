@@ -5,7 +5,7 @@
     tags array is considered 'all of', not 'any of'
 
 
-#>ifs: ["if score temp ftemp <= gametime ftemp", "if data storage fxn:schedule {gametime:10}",...]
+#>ifs: ["if score temp ftemp <= gametime ftemp", "if data storage fxn:matches {gametime:10}",...]
 
 #
 #save ifs to temp storage

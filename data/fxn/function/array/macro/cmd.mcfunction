@@ -9,7 +9,7 @@
 #
 #if -1, return number of successes
 $scoreboard players set decrement ftemp $(decrement)
-execute if score decrement ftemp matches ..-1 run return run scoreboard players get success ftemp
+execute if score decrement ftemp matches ..-1 run return run scoreboard players get cmdsuccess ftemp
 #else
 
 #get some data (for if statement enjoyers)
@@ -18,7 +18,7 @@ $data modify storage fxn:matches value set from $(namespace)[$(decrement)]
 
 #>run command | NOTE: use 'function draft:draft with storage fxn:array cmd' {namespace, decrement} to get array entries
 $execute store result score add ftemp run $(command)
-scoreboard players operation success ftemp += add ftemp
+scoreboard players operation cmdsuccess ftemp += add ftemp
 #and add to success ^^^
 
 #decrement-- -> 'storage fxn:array cmd.decrement'
