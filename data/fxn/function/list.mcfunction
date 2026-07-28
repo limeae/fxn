@@ -7,6 +7,7 @@
 #
 #if list is created from inside a list, preserve context at the current point
 #preserve the current context
+execute if score in_list ftemp matches 1.. run data modify storage fxn:list context.tags set value ["context"]
 execute if score in_list ftemp matches 1.. run data modify storage fxn:list context.command set value "function fxn:list/loop"
 execute if score in_list ftemp matches 1.. run function fxn:context/pos {namespace:"storage fxn:list context", include:[all]}
 execute if score in_list ftemp matches 1.. run data remove storage fxn:list context.uuid

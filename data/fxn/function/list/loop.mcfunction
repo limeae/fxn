@@ -12,8 +12,12 @@ data modify storage fxn:list command set from storage fxn:list list[0]
 data remove storage fxn:list list[0]
 
 
-#>if command is a context shift, return run command/handle
-execute if data storage fxn:list command.command run return run function fxn:command/handle with storage fxn:list command
+#>if command is context shift, return run command/handle
+execute if data storage fxn:list {command:{tags:["context"]}} run return run function fxn:command/handle with storage fxn:list command
+#else
+
+#if command is a handle, run command/handle
+execute if data storage fxn:list command.command run function fxn:command/handle with storage fxn:list command
 #
 #>otherwise run "command" as a command
 #specify if list is created from another list
