@@ -1,5 +1,5 @@
 #clones selection region to q-region
-#wtih {timedelta}
+#with {timedelta}
 
 #ran as the player
 
