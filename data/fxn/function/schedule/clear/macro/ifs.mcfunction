@@ -34,6 +34,7 @@ $data modify storage fxn:matches storage set from $(namespace)[$(decrement)].sto
 #>if
 #example: 'if score scheduletime ftemp <= gametime ftemp'
 #example: 'run function fxn:array/if_value {namespace:"storage fxn:matches tags", value:"wallabee", return:"return 1"}'
+scoreboard players set ifsuccess ftemp 0
 $execute store result score ifsuccess ftemp $(if)
 execute unless score ifsuccess ftemp matches 1.. run return fail
 

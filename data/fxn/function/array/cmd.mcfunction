@@ -18,5 +18,5 @@ store result storage fxn:array cmd.decrement int 1 \
 execute if data storage fxn:array {cmd:{decrement:-1}} run return fail
 
 #run the loop {namespace, cmd, command, decrement--}
-scoreboard players reset cmdsuccess ftemp
+data modify storage fxn:array cmd.success set value 0
 return run function fxn:array/macro/cmd with storage fxn:array cmd

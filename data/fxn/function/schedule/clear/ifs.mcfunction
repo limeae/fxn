@@ -21,5 +21,3 @@ return run function fxn:array/cmd {namespace:"storage fxn:schedule list", comman
         "function fxn:schedule/clear/macro/ifs with storage fxn:array cmd"]}\
     '}
 #^^^ reset list of ifs, get if[0], start array/cmd loop
-
-function fxn:list {list: ["data modify storage fxn:schedule ifs set from storage fxn:schedule ifs_temp","data modify storage fxn:array cmd.if set from storage fxn:schedule ifs[0]","function fxn:schedule/clear/macro/ifs with storage fxn:array cmd"]}
