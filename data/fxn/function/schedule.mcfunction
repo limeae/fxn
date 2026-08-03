@@ -39,6 +39,8 @@ execute if data storage fxn:schedule merge.include run function fxn:context/pos 
 execute if data storage fxn:schedule merge.include run data remove storage fxn:schedule merge.include
 #uuid:context -> uuid
 execute if data storage fxn:schedule {merge:{uuid:context}} run function fxn:context/uuid with storage fxn:schedule merge
+#storage:{block:context} -> storage:{block}
+execute if data storage fxn:schedule {merge:{storage:{block:context}}} run function fxn:context/block with storage fxn:schedule merge.storage
 #
 data remove storage fxn:schedule merge.namespace
 #

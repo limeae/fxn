@@ -1,5 +1,5 @@
 #runs a function in schedule when gametime matches
-#with everything in [index]
+#with {index}
 
 
 #get [].loops
