@@ -57,12 +57,22 @@ fxn:schedule schedules the command after the timedelta has elapsed with all prov
 fxn:schedule/clear clears all scheduled commands
 fxn:schedule/clear/ifs clears all scheduled commands that meet every provided if statement
 
+For:
+	runs a for loop with a command, a start point, and an endpoint
+fxn:for/cmd runs the provided command
+fxn:for/nest creates a nested loop that runs a command before running the next loop
+
+Fill:
+	runs a for loop with x, y, and z used as position offsets
+fxn:fill/cmd runs the provided command with dx, dy, dz
+
 fxn:command runs the command
 fxn:raycast runs the command forward at given intervals with a maximum iterations
 fxn:list runs the provided list of commands in order
 
 tl;dr use fxn:schedule to schedule commands in the future
 	use fxn:list to run a list of commands
+	use fxn:array/cmd or fxn:for/cmd to run for loops
 ------
 
 Tool:
