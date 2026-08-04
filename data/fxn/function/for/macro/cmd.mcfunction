@@ -22,9 +22,10 @@ execute if score i ftemp = end ftemp run return run scoreboard players get succe
 $scoreboard players set dif ftemp $(dif)
 execute store result storage fxn:for cmd.i int 1 \
     run scoreboard players operation i ftemp += dif ftemp
-#save command and end in case they were changed (by a nested for loop)
+#save command, end, and dif in case they were changed (by a nested for loop)
 $data modify storage fxn:for cmd.command set value '$(command)'
 execute store result storage fxn:for cmd.end int 1 run scoreboard players get end ftemp
+execute store result storage fxn:for cmd.dif int 1 run scoreboard players get dif ftemp
 
 #>loop with i++/--
 return run function fxn:for/macro/cmd with storage fxn:for cmd
