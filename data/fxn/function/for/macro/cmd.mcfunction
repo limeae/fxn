@@ -1,31 +1,29 @@
 #run each int between start and end in the for loop
-#with storage fxn:for cmd {i, end, dif, command, success}
+#with storage fxn:for cmd {i, end, command}
 
 
 #
 #reference score 'i ftemp' instead of using macros
 
 #>run command
-scoreboard players set add ftemp 0
-$execute store result score add ftemp run $(command)
-$scoreboard players set success ftemp $(success)
-execute store result storage fxn:for cmd.success int 1 run scoreboard players operation success ftemp += add ftemp
-#and add to success ^^^
+$$(command)
 
-#if i=end, return successes
+#path to next nest if present
+execute if score in_nest ftemp matches 1 run function fxn:command with storage fxn:for cmd.path
+
+#if i=end, return fail (not successes)
 $scoreboard players set i ftemp $(i)
 $scoreboard players set end ftemp $(end)
-execute if score i ftemp = end ftemp run return run scoreboard players get success ftemp
+execute if score i ftemp = end ftemp run return fail
 #else
 
 #add dif to i
-$scoreboard players set dif ftemp $(dif)
-execute store result storage fxn:for cmd.i int 1 \
-    run scoreboard players operation i ftemp += dif ftemp
+execute if score end ftemp < i ftemp run scoreboard players set dif ftemp -1
+execute if score end ftemp >= i ftemp run scoreboard players set dif ftemp 1
+execute store result storage fxn:for cmd.i int 1 run scoreboard players operation i ftemp += dif ftemp
 #save command, end, and dif in case they were changed (by a nested for loop)
 $data modify storage fxn:for cmd.command set value '$(command)'
 execute store result storage fxn:for cmd.end int 1 run scoreboard players get end ftemp
-execute store result storage fxn:for cmd.dif int 1 run scoreboard players get dif ftemp
 
 #>loop with i++/--
-return run function fxn:for/macro/cmd with storage fxn:for cmd
+function fxn:for/macro/cmd with storage fxn:for cmd
