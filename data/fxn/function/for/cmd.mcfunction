@@ -13,6 +13,8 @@
 
 #save command
 $data modify storage fxn:for cmd.command set value '$(command)'
+#empty path command
+execute unless score in_nest ftemp matches 1.. run data modify storage fxn:for cmd.path_command set value 0
 
 #clamp to ints
 #start -> i
