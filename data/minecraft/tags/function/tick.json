@@ -1,5 +1,6 @@
 {
     "values": [
-        "fxn:tick"
+        "fxn:tick",
+        "waypoint:tick"
     ]
 }

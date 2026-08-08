@@ -32,4 +32,5 @@ function fxn:array/if_value {namespace: "storage fxn:context pos.include", value
 function fxn:array/if_value {namespace: "storage fxn:context pos.include", value:"!dim", return:"return run data modify storage fxn:context pos.dim set value 0"}
 
 #return run as marker with storage fxn:context/pos {namespace, x BOOL, y BOOL, z BOOL, r0 BOOL, r1 BOOL, dim BOOL}
-execute summon marker run return run function fxn:context/macro/pos with storage fxn:context pos
+#loaded
+execute summon marker run function fxn:loaded {command:'function fxn:context/macro/pos with storage fxn:context pos'}

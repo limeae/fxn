@@ -5,4 +5,5 @@
 #block_id returns "minecraft:pumpkin", always with quotes and minecraft prefix
 
 #summon item holder and run with it
-$execute summon item_display run function fxn:context/macro/block_id {namespace:"$(namespace)"}
+#loaded
+$execute summon item_display run function fxn:loaded {command:'function fxn:context/macro/block_id {namespace:"$(namespace)"}'}
