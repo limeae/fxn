@@ -16,6 +16,7 @@ $execute unless data storage waypoint:$(group) list[0] run data modify storage w
 $execute unless data storage waypoint:$(group) list[{name:"$(name)"}] run data modify storage waypoint:$(group) list prepend value {}
 $execute unless data storage waypoint:$(group) list[{name:"$(name)"}] run function fxn:context/pos_int {namespace:"storage waypoint:$(group) list[0]", include:[all, "!r1"]}
 $execute unless data storage waypoint:$(group) list[{name:"$(name)"}] run data modify storage waypoint:$(group) list[0].group set value $(group)
+$execute unless data storage waypoint:$(group) list[{name:"$(name)"}] run data modify storage waypoint:$(group) list[0].color set value $(color)
 $execute unless data storage waypoint:$(group) list[{name:"$(name)"}] run return run data modify storage waypoint:$(group) list[0].name set value "$(name)"
 #else
 
