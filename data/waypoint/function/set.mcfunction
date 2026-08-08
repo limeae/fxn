@@ -20,7 +20,7 @@ $execute unless data storage waypoint:$(group) list[{name:"$(name)"}] run return
 #else
 
 #>if waypoint 'name' is in list, edit
-$function fxn:context/pos_int {namespace:"storage waypoint:$(group) list[{name:\"$(name)\"}]", include:[all]}
+$function fxn:context/pos_int {namespace:"storage waypoint:$(group) list[{name:\\\"$(name)\\\"}]", include:[all, "!r1"]}
 $data modify storage waypoint:$(group) list[{name:"$(name)"}].color set value $(color)
 
 #if group not in master list, add to master list
