@@ -26,3 +26,6 @@ $function fxn:context/pos_int {namespace:"storage waypoint:$(group) list[{name:\
 scoreboard players set success ftemp 0
 $execute store result score success ftemp run function fxn:array/if_value {namespace:"storage waypoint:master list", value:"$(group)", return:"return 1"}
 $execute if score success ftemp matches 0 run data modify storage waypoint:master list append value "$(group)"
+
+#give new book
+$function waypoint:book {group:$(group)}

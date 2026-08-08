@@ -42,14 +42,24 @@ Command:
 	runs commands with contexts
 fxn:command/merge runs the command with all provided contexts, where the defaults are automatically set
 fxn:command/handle runs the command with all contexts, splitting into ((uuid|no uuid) | (storage|no storage))
+fxn:command/create creates a command handle with all provided contexts to the namespace
+fxn:command/create/reuse creates a command handle with all provided and previously used contexts to the namespace
+fxn:command/create appends a command handle with all provided contexts in the namespaced array
 
 Context:
 	saves contexts to the namespace
-fxn:context/block saves the block at the current position to the namespace
+fxn:context/block_id saves the block at the current position to the namespace
 fxn:context/player saves the current player's nickname to the namespace (from mojang servers)
 fxn:context/pos_int saves the current position [x, y, z, r0, r1, dim] as integers to the namespace
 fxn:context/pos saves the current position [x, y, z, r0, r1, dim] as doubles to the namespace
 fxn:context/uuid saves the current entity's hyphenated hexadecimal uuid to the namespace
+
+Fill:
+fxn:fill/cmd runs a command at every block in the dxdydz rect
+
+For:
+fxn:for/cmd runs a command for every value between the start and end values, with score i ftemp
+fxn:for/nest runs a nest of for loops
 
 Schedule:
 	schedules (and clears) commands to be ran in the future with provided contexts
@@ -68,7 +78,9 @@ fxn:fill/cmd runs the provided command with dx, dy, dz
 
 fxn:command runs the command
 fxn:raycast runs the command forward at given intervals with a maximum iterations
-fxn:list runs the provided list of commands in order
+fxn:list runs the provided list of commands and command handles in order, including other lists
+fxn:concat concatenates values 0 and 1 to the namespace
+fxn:loaded loads the position before running the provided command
 
 tl;dr use fxn:schedule to schedule commands in the future
 	use fxn:list to run a list of commands
@@ -99,3 +111,13 @@ tool:kit gives command blocks that run tool:select and tool:move at the placed b
 
 tl;dr use the blue block to extend a region, the pink block to move its copy, and tool:op/move (or clone, or other) to operate on the 2 regions
 ------
+
+Waypoint:
+	set waypoints in a group at any position to teleport or operate on
+waypoint:book gives the player a book with all waypoints in the group
+waypoint:particle toggles the player's particles for the group
+waypoint:remove removes the named entry from the group
+waypoint:set adds the named entry at the current position to the group, with color
+waypoint:tp teleports the entity to the named entry's position
+
+tl;dr make a group name, use waypoint:set to create waypoints and waypoint:book to tp and remove waypoints
