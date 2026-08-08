@@ -1,12 +1,13 @@
 #prepends a scheduled command with all given contexts, timedelta, and loops
+#while keeping previous data in the namespace
 #with {merge: {timedelta, command, loops, uuid, pos{}, x, y, z, r0, r1, dim, storage{},tags[]}}
 
 #>example:
 #>function fxn:schedule {merge: {command:"say hi", timedelta:20, loops:2, uuid:context, pos:[all, !dim], dim:"minecraft:the_end", tags:["my_message"]}}
 
 
-#runs fxn:command/create with extra args
-$function fxn:command/create {namespace:"storage fxn:schedule merge", merge:$(merge)}
+#runs fxn:command/create/reuse with extra args
+$function fxn:command/create/reuse {namespace:"storage fxn:schedule merge", merge:$(merge)}
 
 
 #>additional contexts for schedule
