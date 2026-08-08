@@ -13,15 +13,15 @@ execute unless entity @p run return run say no players in dimension!
 #if list is empty
 $execute unless data storage waypoint:$(group) list[0] run data modify storage waypoint:$(group) list set value []
 #>if waypoint 'name' is not in list, prepend
-$execute unless data storage waypoint:$(group) list[{name:"$(name)"}] run data modify storage waypoint:$(group) list prepend value {}
+$execute unless data storage waypoint:$(group) list[{name:"$(name)"}] run data modify storage waypoint:$(group) list prepend value {group:$(group),name:"$(name)",color:$(color)}
 $execute unless data storage waypoint:$(group) list[{name:"$(name)"}] run function fxn:context/pos_int {namespace:"storage waypoint:$(group) list[0]", include:[all, "!r1"]}
-$execute unless data storage waypoint:$(group) list[{name:"$(name)"}] run data modify storage waypoint:$(group) list[0].group set value $(group)
-$execute unless data storage waypoint:$(group) list[{name:"$(name)"}] run data modify storage waypoint:$(group) list[0].color set value $(color)
-$execute unless data storage waypoint:$(group) list[{name:"$(name)"}] run return run data modify storage waypoint:$(group) list[0].name set value "$(name)"
+#give new book
+$execute unless data storage waypoint:$(group) list[{name:"$(name)"}] run return run function waypoint:book {group:$(group)}
 #else
 
 #>if waypoint 'name' is in list, edit
 $function fxn:context/pos_int {namespace:"storage waypoint:$(group) list[{name:\"$(name)\"}]", include:[all]}
+$data modify storage waypoint:$(group) list[{name:"$(name)"}].color set value $(color)
 
 #if group not in master list, add to master list
 scoreboard players set success ftemp 0
