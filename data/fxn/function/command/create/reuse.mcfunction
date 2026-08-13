@@ -13,8 +13,5 @@
 #save merge to storage
 $data modify $(namespace) merge value $(merge)
 
-#defaults if not provided
-$function fxn:command/create/macro/default {namespace:"$(namespace)"}
-
 #special contexts for "context"
 $function fxn:command/create/macro/context {namespace:"$(namespace)"}
