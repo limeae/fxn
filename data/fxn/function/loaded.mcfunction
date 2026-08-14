@@ -5,7 +5,7 @@
 #
 #check if loaded
 scoreboard players set loaded ftemp 0
-execute if loaded ~ ~ ~ run scoreboard players set loaded ftemp 1
+execute unless block ~ ~ ~ test_block run scoreboard players set loaded ftemp 1
 
 #load if not loaded
 execute if score loaded ftemp matches 0 run forceload add ~ ~ ~ ~
