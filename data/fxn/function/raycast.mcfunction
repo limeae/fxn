@@ -1,10 +1,10 @@
 #loops in a direction with a command
-#with {dist FLOAT, max COMMAND, command}
+#with {dist, i, cmd}
 
-#>command must pass parsing to run (write it correctly)
-#>command should have a conditional execute: 'if block' or 'if entity' or ...
+#>i max iterations
 
 
 #>run raycast
 scoreboard players reset failsafe ftemp
-$function fxn:utils/raycast {dist:$(dist), max:$(max), command:'$(command)'}
+$execute store result score return ftemp run function fxn:utils/raycast {dist:$(dist), i:$(i), cmd:'$(cmd)', return:0}
+return run scoreboard players get return ftemp

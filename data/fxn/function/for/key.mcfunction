@@ -1,6 +1,6 @@
-#runs command, brings i toward end (a for loop)
+#runs save key, brings i toward end (a for loop)
 #return -
-#with storage fxn:for {i, end, cmd}
+#with storage fxn:for {i, end, key}
 
 
 #
@@ -8,8 +8,8 @@
 #store i
 $scoreboard players set i ftemp $(i)
 $data modify storage fxn:for i set value $(i)
-#>command
-$$(cmd)
+#>key
+$function fxn:cmd with storage fxn:save list[$(key)]
 
 #break | i++ | i--
 $scoreboard players set i ftemp $(i)
@@ -20,7 +20,7 @@ execute if score i ftemp > end ftemp store result storage fxn:for i int 1 run sc
 
 #save macros
 $data modify storage fxn:for end set value $(end)
-$data modify storage fxn:for cmd set value '$(cmd)'
+$data modify storage fxn:for key set value '$(key)'
 
 #loops
-function fxn:for/cmd with storage fxn:for
+function fxn:for/key with storage fxn:for

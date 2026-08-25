@@ -1,6 +1,7 @@
 #tp current entity to macro
-#with {x, y, z, r0}
+#return -
+#with {x, y, z}
 
-#without dimension or rot[1]
+#without dimension or rot
 #
-$return run tp @s $(x) $(y) $(z) $(r0) 0
+$tp @s $(x) $(y) $(z) 0 0

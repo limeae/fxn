@@ -1,6 +1,6 @@
-#runs a command for each entry in the pathed array
+#runs a save key for each entry in the pathed array
 #return -
-#with storage fxn:array {path, cmd, i}
+#with storage fxn:array {path, key, i}
 
 #path: "storage draft:draft example.array"
 #i is the lowest value checked (set to 0)
@@ -15,23 +15,16 @@ $execute unless data $(path)[$(i)] run return fail
 $scoreboard players set i ftemp $(i)
 $data modify storage fxn:array i set value $(i)
 $data modify storage fxn:array value set from $(path)[$(i)]
-#>command
-scoreboard players set code ftemp 0
-$$(cmd)
-
-#delete and break codes
-$execute if score code ftemp matches -122..-121 run data remove $(path)[$(i)]
-execute if score code ftemp matches -123..-122 run return fail
-#>codes: -123: break, -122: delete and break, -121: delete
+#>key
+$function fxn:cmd with storage fxn:save list[$(key)]
 
 #save macros
 $data modify storage fxn:array path set value "$(path)"
-$data modify storage fxn:array cmd set value '$(cmd)'
+$data modify storage fxn:array key set value $(key)
 
 #i++
 $scoreboard players set i ftemp $(i)
-execute if score code ftemp matches -121 run scoreboard players remove i ftemp 1
 execute store result storage fxn:array i int 1 run scoreboard players add i ftemp 1
 
 #loops
-function fxn:array/cmd with storage fxn:array
+function fxn:array/key with storage fxn:array

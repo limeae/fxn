@@ -1,14 +1,14 @@
 #prepends a scheduled command with all given contexts, timedelta, and loops
-#with {merge: {timedelta, cmd, loops, uuid, include[], x, y, z, r0, r1, dim, storage{},tags[]}}
+#with {def, merge: {timedelta, cmd, loops, uuid, include[], x, y, z, r0, r1, dim, storage{},tags[]}}
 
 #>example:
 #>function fxn:schedule {merge: {cmd:"say hi", timedelta:20, loops:2, uuid:context, include:[all, !dim], dim:"minecraft:the_end", tags:["my_message"]}}
-
+#>def: new (default) | empty | reuse
 
 #runs fxn:cmd/create
-data modify storage fxn:schedule merge set value {timedelta:0, loops:0}
-$function fxn:cmd/create {path:"storage fxn:schedule merge", def:empty, mode:merge, merge:$(merge)}
-
+$function fxn:cmd/create {path:"storage fxn:schedule merge", def:$(def), mode:merge, merge:$(merge)}
+execute unless data storage fxn:schedule merge.timedelta run data modify storage fxn:schedule merge.timedelta set value 0
+execute unless data storage fxn:schedule merge.loops run data modify storage fxn:schedule merge.loops set value 0
 
 #>additional contexts for schedule
 #timedelta to gametime

@@ -20,4 +20,4 @@ $data modify storage fxn:fill cmd.nest append value {command:"execute store resu
 $data modify storage fxn:fill cmd.nest append value {command:'$(command)',start:0,end:0}
 
 #run nest with our generated nest
-function fxn:for/nest with storage fxn:fill cmd
+#function fxn:for/nest with storage fxn:fill cmd

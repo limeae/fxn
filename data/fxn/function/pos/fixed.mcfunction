@@ -1,6 +1,5 @@
-#runs 'command' at provided xyz
-#with storage fxn:fill pos {x, y, z, command}
+#runs a command at the coords
+#return -
+#with {x, y, z, cmd}
 
-
-#run at delta-position
-$execute positioned $(x) $(y) $(z) run return run $(command)
+$execute positioned $(x) $(y) $(z) run $(cmd)
