@@ -6,8 +6,9 @@
 #block_id returns "minecraft:pumpkin", always with quotes and minecraft prefix
 
 #check for other blocks
-$execute if block ~ ~ ~ barrier run return run data modify $(path).block_id set value barrier
-$execute if block ~ ~ ~ command_block run return run data modify $(path).block_id set value command_block
+$execute if block ~ ~ ~ air run return run data modify $(path).block_id set value "minecraft:air"
+$execute if block ~ ~ ~ barrier run return run data modify $(path).block_id set value "minecraft:barrier"
+$execute if block ~ ~ ~ command_block run return run data modify $(path).block_id set value "minecraft:command_block"
 #>add more here
 #else
 

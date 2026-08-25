@@ -4,5 +4,5 @@
 
 #path: "storage draft:draft example.array"
 
-$function fxn:array/cmd {path:"$(path)", cmd:\
+$function fxn:array/cmd {path:"$(path)", i:0, cmd:\
     'execute if data storage fxn:array {value:$(value)} run $(cmd)'}
