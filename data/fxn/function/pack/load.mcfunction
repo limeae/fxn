@@ -3,6 +3,7 @@
 scoreboard objectives add ftemp dummy
 
 
-#reset save list
+#save key reset
 data modify storage fxn:save list set value []
-scoreboard players set save.list ftemp -1
+scoreboard players set savelist ftemp -1
+

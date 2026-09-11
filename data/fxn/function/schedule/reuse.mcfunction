@@ -1,4 +1,4 @@
-#prepends a scheduled command with all given contexts, timedelta, and loops
+#prepends a scheduled command with all given contexts, timedelta, and loops, and reuses old data
 #return -
 #with {merge: {timedelta, cmd | list, loops, uuid, include[], x, y, z, r0, r1, dim, storage{},tags[]}}
 
@@ -9,8 +9,10 @@
 #>      reuse (efficient for reusing data, leaves old stuff if not overwritten)
 
 #create a handle
-data modify storage fxn:schedule merge set value {timedelta:0, loops:0}
-$function fxn:handle/create {path:"storage fxn:schedule merge", def:empty, mode:merge, merge:$(merge)}
+data modify storage fxn:cmd create set from storage fxn:schedule merge
+$function fxn:handle/create {path:"storage fxn:schedule merge", def:reuse, mode:set, merge:$(merge)}
+execute unless data storage fxn:schedule merge.timedelta run data modify storage fxn:schedule merge.timedelta set value 0
+execute unless data storage fxn:schedule merge.loops run data modify storage fxn:schedule merge.loops set value 0
 
 #>additional contexts for schedule
 #timedelta to gametime

@@ -1,5 +1,6 @@
 {
     "values": [
-        "fxn:pack/tick"
+        "fxn:pack/tick",
+        "waypoint:pack/tick"
     ]
 }

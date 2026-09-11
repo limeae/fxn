@@ -1,5 +1,5 @@
 #actually displays the particle to players
-#with storage waypoint:$(group) list[$(decrement)] {name, group, x, y, z, dim, color[]}
+#with storage fxn:array value {name, group, x, y, z, dim, color[]}
 
 
 #

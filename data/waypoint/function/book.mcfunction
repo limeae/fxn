@@ -1,7 +1,7 @@
 #give the waypoint book with all waypoints inside
 #with {group}
 
-
+say book
 #clear book
 $clear @s written_book[custom_data={group:$(group)}]
 
@@ -13,8 +13,8 @@ $data modify storage waypoint:matches pages[0] append value {text:"       $(grou
 #add particle toggle
 $data modify storage waypoint:matches pages[0] append value \
     {text:" - particles\n\n",color:light_purple,click_event:{action:"run_command",command:"function waypoint:particle {group:$(group)}"}}
-$data modify storage fxn:array cmd.group set value $(group)
-$function fxn:array/cmd {namespace:"storage waypoint:$(group) list", command:"function waypoint:macro/book with storage fxn:array cmd"}
+$data modify storage fxn:array group set value $(group)
+$function fxn:array {path:'storage waypoint:$(group) list', cmd:'function waypoint:macro/book with storage fxn:array', i:0}
 
 #summon item
 $summon item ~ ~ ~ {Tags:["waypoint_book"],PickupDelay:0,Item:{id:"written_book",components:{\

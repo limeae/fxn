@@ -1,8 +1,7 @@
-#deletes value if value in the pathed array
+#run a command if value is found in array
 #return -
 #with {path, value}
+#context -
 
-#path: "storage draft:draft example.array"
-
-$function fxn:array/if {path:"$(path)", value:$(value), cmd:\
-    'scoreboard players set code ftemp -122'}
+$function fxn:array {path:"$(path)", cmd:'execute if data storage fxn:array {value:$(value)} run \
+    function fxn:prefab/array/delete with storage fxn:array', i:0}

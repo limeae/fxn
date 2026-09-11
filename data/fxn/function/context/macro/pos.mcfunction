@@ -1,35 +1,41 @@
-#saves [x, y, z, r0, r1, dim, facing] to 'path'
+#save x, y, z, r0, r1, and dim (int or double) to the path.xyzr0...
 #return -
-#with storage fxn:context pos {path, x BOOL, y BOOL, z BOOL, r0 BOOL, r1 BOOL, dim BOOL} (not used, use storage)
+#with {path}
+#context [x, y, z, r0, r1, dim] if included
 
-#>pls dont run this fxn, use context/pos
+#>use context/pos
 
-
-#rotate properly
+#tp our marker
 tp @s ~ ~ ~ ~ ~
-#pos x,y,z
-$execute if data storage fxn:context {pos:{x:1}} run \
-    data modify $(path).x set from entity @s Pos[0]
-$execute if data storage fxn:context {pos:{y:1}} run \
-    data modify $(path).y set from entity @s Pos[1]
-$execute if data storage fxn:context {pos:{z:1}} run \
-    data modify $(path).z set from entity @s Pos[2]
-#rot r0,r1
-$execute if data storage fxn:context {pos:{r0:1}} run \
-    data modify $(path).r0 set from entity @s Rotation[0]
-$execute if data storage fxn:context {pos:{r1:1}} run \
-    data modify $(path).r1 set from entity @s Rotation[1]
-#dimension from nearby player, bc Mojang
-$execute if data storage fxn:context {pos:{dim:1}} run \
-    data modify $(path).dim set from entity @p Dimension
+
+#path: "storage draft:draft " | "storage draft:draft example.data." (with whitespace or period)
+#check if $(path)x is valid, otherwise throw error and end early
+$data get $(path)x
 
 
-#get "facing" direction from command_block (really any block with "facing")
-$execute if data storage fxn:context {pos:{dim:1}} run \
-    execute if block ~ ~ ~ command_block[facing=north] run data modify $(path).r0 set value -180
-$execute if data storage fxn:context {pos:{dim:1}} run \
-    execute if block ~ ~ ~ command_block[facing=east] run data modify $(path).r0 set value -90
-$execute if data storage fxn:context {pos:{dim:1}} run \
-    execute if block ~ ~ ~ command_block[facing=south] run data modify $(path).r0 set value 0
-$execute if data storage fxn:context {pos:{dim:1}} run \
-    execute if block ~ ~ ~ command_block[facing=west] run data modify $(path).r0 set value 90
+#double: x, y, z,  r0, r1
+$execute if score double ftemp matches 1 run function fxn:array {path:"storage fxn:context include", cmd:'\
+    execute if data storage fxn:array {value:"x"} run say data modify $(path)x set from entity @s Pos[0]', i:0}
+$execute if score double ftemp matches 1 run function fxn:array {path:"storage fxn:context include", cmd:'\
+    execute if data storage fxn:array {value:"y"} run say data modify $(path)y set from entity @s Pos[1]', i:0}
+$execute if score double ftemp matches 1 run function fxn:array {path:"storage fxn:context include", cmd:'\
+    execute if data storage fxn:array {value:"z"} run say data modify $(path)z set from entity @s Pos[2]', i:0}
+$execute if score double ftemp matches 1 run function fxn:array {path:"storage fxn:context include", cmd:'\
+    execute if data storage fxn:array {value:"r0"} run say data modify $(path)r0 set from entity @s Rotation[0]', i:0}
+$execute if score double ftemp matches 1 run function fxn:array {path:"storage fxn:context include", cmd:'\
+    execute if data storage fxn:array {value:"r1"} run say data modify $(path)r1 set from entity @s Rotation[1]', i:0}
+
+#int: x, y, z,  r0, r1
+$execute unless score double ftemp matches 1 run function fxn:array {path:"storage fxn:context include", cmd:'\
+    execute if data storage fxn:array {value:"x"} store result $(path)x int 1 run data get entity @s Pos[0]', i:0}
+$execute unless score double ftemp matches 1 run function fxn:array {path:"storage fxn:context include", cmd:'\
+    execute if data storage fxn:array {value:"y"} store result $(path)y int 1 run data get entity @s Pos[1]', i:0}
+$execute unless score double ftemp matches 1 run function fxn:array {path:"storage fxn:context include", cmd:'\
+    execute if data storage fxn:array {value:"z"} store result $(path)z int 1 run data get entity @s Pos[2]', i:0}
+$execute unless score double ftemp matches 1 run function fxn:array {path:"storage fxn:context include", cmd:'\
+    execute if data storage fxn:array {value:"r0"} store result $(path)r0 int 1 run data get entity @s Rotation[0]', i:0}
+$execute unless score double ftemp matches 1 run function fxn:array {path:"storage fxn:context include", cmd:'\
+    execute if data storage fxn:array {value:"r1"} store result $(path)r1 int 1 run data get entity @s Rotation[1]', i:0}
+
+#>nearest players dimension (fix this if dimension has no players)
+$function fxn:array {path:"storage fxn:context include", cmd:'execute if data storage fxn:array {value:"dim"} run data modify $(path)dim set from entity @p Dimension', i:0}
