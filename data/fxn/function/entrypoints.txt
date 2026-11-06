@@ -1,0 +1,7 @@
+
+
+
+when a player joins | firstjoins | rejoins:
+    execute as @a if score @s fxn.join matches 1
+    execute as @a if score @s fxn.join matches 1 unless score @s fxn.leave matches 1
+    execute as @a if score @s fxn.join matches 1 if score @s fxn.leave matches 1

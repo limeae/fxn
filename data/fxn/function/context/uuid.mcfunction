@@ -1,45 +1,57 @@
-#saves entitys hyphenated hexadecimal uuid to $(path).uuid
-#return -
+#get the current entity's hyphenated hexadecimal uuid
+#return (0 no entity | 1 entity)
 #with {path}
 
-#>path:  "storage draft:draft example.data"
+#no @s ERROR
+execute unless entity @s run return 0
 
-#but do not save to a score!
 
-scoreboard players set 16 ftemp 16
-#>so much scoreboard maths
+scoreboard players set 16 fxn 16
 
-#>get the 0th prefix
-data modify storage fxn:context uuid.prefix set value 0
-#UUID[0] -> score int ftemp
-execute store result score int ftemp run data get entity @s UUID[0]
-#score i ftemp = 7 = storage fxn:context uuid.i
-execute store result storage fxn:context uuid.i int 1 run scoreboard players set i ftemp 7
-#convert 'int' into hexadecimal digits {prefix BYTE, i--} & score int ftemp UUID[0]
-function fxn:context/macro/uuid/loop with storage fxn:context uuid
-#loops
+#separate UUID[0], ... [3]
+execute store result score uuid fxn run data get entity @s UUID[0]
+function fxn:context/uuid/char {hash:"00"}
+function fxn:context/uuid/char {hash:"01"}
+function fxn:context/uuid/char {hash:"02"}
+function fxn:context/uuid/char {hash:"03"}
+function fxn:context/uuid/char {hash:"04"}
+function fxn:context/uuid/char {hash:"05"}
+function fxn:context/uuid/char {hash:"06"}
+function fxn:context/uuid/char {hash:"07"}
+execute store result score uuid fxn run data get entity @s UUID[1]
+function fxn:context/uuid/char {hash:"10"}
+function fxn:context/uuid/char {hash:"11"}
+function fxn:context/uuid/char {hash:"12"}
+function fxn:context/uuid/char {hash:"13"}
+function fxn:context/uuid/char {hash:"14"}
+function fxn:context/uuid/char {hash:"15"}
+function fxn:context/uuid/char {hash:"16"}
+function fxn:context/uuid/char {hash:"17"}
+execute store result score uuid fxn run data get entity @s UUID[2]
+function fxn:context/uuid/char {hash:"20"}
+function fxn:context/uuid/char {hash:"21"}
+function fxn:context/uuid/char {hash:"22"}
+function fxn:context/uuid/char {hash:"23"}
+function fxn:context/uuid/char {hash:"24"}
+function fxn:context/uuid/char {hash:"25"}
+function fxn:context/uuid/char {hash:"26"}
+function fxn:context/uuid/char {hash:"27"}
+execute store result score uuid fxn run data get entity @s UUID[3]
+function fxn:context/uuid/char {hash:"30"}
+function fxn:context/uuid/char {hash:"31"}
+function fxn:context/uuid/char {hash:"32"}
+function fxn:context/uuid/char {hash:"33"}
+function fxn:context/uuid/char {hash:"34"}
+function fxn:context/uuid/char {hash:"35"}
+function fxn:context/uuid/char {hash:"36"}
+function fxn:context/uuid/char {hash:"37"}
 
-#get prefix 1
-data modify storage fxn:context uuid.prefix set value 1
-execute store result score int ftemp run data get entity @s UUID[1]
-execute store result storage fxn:context uuid.i int 1 run scoreboard players set i ftemp 7
-function fxn:context/macro/uuid/loop with storage fxn:context uuid
-#loops
+#concatenate into string
+function fxn:context/uuid/concat with storage fxn:context uuid
 
-#get prefix 2
-data modify storage fxn:context uuid.prefix set value 2
-execute store result score int ftemp run data get entity @s UUID[2]
-execute store result storage fxn:context uuid.i int 1 run scoreboard players set i ftemp 7
-function fxn:context/macro/uuid/loop with storage fxn:context uuid
-#loops
+#send to PATH
+$data modify $(path) set from storage fxn:context uuid.concat
 
-#get prefix 3
-data modify storage fxn:context uuid.prefix set value 3
-execute store result score int ftemp run data get entity @s UUID[3]
-execute store result storage fxn:context uuid.i int 1 run scoreboard players set i ftemp 7
-function fxn:context/macro/uuid/loop with storage fxn:context uuid
-#loops
 
-#concatenate with macro
-$data modify storage fxn:context uuid.path set value "$(path)"
-return run function fxn:context/macro/uuid/concatenate with storage fxn:context uuid
+#/!\ maybe delete the temp storage after
+return 1

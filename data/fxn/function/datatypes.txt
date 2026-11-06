@@ -1,0 +1,13 @@
+
+
+SCOREBOARD: <name> <objective> | Jeb bluePoints | @p minigame.apples
+score holder names can be arbitrary and can refer to offline/nonexistent players
+
+
+PATH: <category> <cat.source> <filepath> | storage draft:draft foo.bar | block 0 5 -7 items[0] | entity @p Health
+category must be (storage | block | entity) and cat.source must match category specifications
+storage: <sourceA:sourceB> | draft:draft   ::   block: <x> <y> <z> | 0 5 -7   ::   entity: <name> | @n[type=cow]
+within the source, the nbt requires a filepath: equipment.head.id
+path REF: a path that points to the filepath it is in
+
+/!\ PATH is like a pointer, where all data within the path may be read and written to

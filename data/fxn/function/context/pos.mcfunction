@@ -1,20 +1,17 @@
 #save x, y, z, r0, r1, and dim (int or double) to the path.xyzr0...
 #return -
-#with {path, include[double, x, y, z, r0, r1, dim, | all]}
-#context [x, y, z, r0, r1, dim] if included
+#with {path, include[double; x, y, z, r0, r1, dim, | all]}
 
 
 #save include list
 $data modify storage fxn:context include set value $(include)
 
 #data type: int (default) | double (add to include list)
-scoreboard players set double ftemp 0
-function fxn:array {path:"storage fxn:context include", cmd:'\
-    execute if data storage fxn:array {value:"double"} run scoreboard players set double ftemp 1', i:0}
+scoreboard players set double fxn 0
+execute if data storage fxn:context {include:["double"]} run scoreboard players set double fxn 1
 
 #all
-function fxn:array {path:"storage fxn:context include", cmd:'\
-    execute if data storage fxn:array {value:"all"} run return run data modify storage fxn:context include set value [x, y, z, r0, r1, dim]', i:0}
+execute if data storage fxn:context {include:["all"]} run data modify storage fxn:context include set value [x, y, z, r0, r1, dim]
 
 
 #get our marker
