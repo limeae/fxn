@@ -1,0 +1,15 @@
+{
+  "criteria": {
+    "mined_pot": {
+      "trigger": "minecraft:bee_nest_destroyed",
+      "conditions": {
+        "state": {
+          "facing": "north"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "fxn:bees/north"
+  }
+}
